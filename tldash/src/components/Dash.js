@@ -9,7 +9,8 @@ function Dash() {
                     Tethered Payload
                 </h1>
                 <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3 overflow-hidden">
-                    <Minigraph />
+                    <Minigraph subtype = "Voltage" unit = "volts"/>
+                    <Minigraph subtype = "Altitude" unit = "meters"/>
                 </div>
             </div>
             <div className="pt-2 md:pl-2 md:pt-0">

@@ -24,7 +24,7 @@ Chart.register(
 function RealChart(type, subtype, color) {
   const canvas = useRef(null);
 
-  let data = [3, 4, 2, 3, 9, 3, 4, 2, 3, 9];
+  let data = [3, null, 2, 3, 9, 3, 4, 2, 3, 9];
   let labels = ["10:34:23", "10:34:24", "10:34:25", "10:34:26", "10:34:27", "10:34:23", "10:34:24", "10:34:25", "10:34:26", "10:34:27"];
 
 
@@ -47,6 +47,7 @@ function RealChart(type, subtype, color) {
             fill: 'origin',
             borderWidth: 1.5,
             borderColor: "#F3A53F",
+            spanGaps: true,
             data: data,
             pointRadius: 0,
             pointHitRadius: 20,
