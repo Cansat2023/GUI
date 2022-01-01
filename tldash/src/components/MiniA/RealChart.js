@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import {
   Chart,
   LineController,
@@ -21,12 +21,37 @@ Chart.register(
   CategoryScale
 );
 
-function RealChart(type, subtype, color) {
+function RealChart(props) {
   const canvas = useRef(null);
+  const [slicedData, setSlicedData] = useState(new Array(5).fill(null));
 
-  let data = [3, null, 2, 3, 9, 3, 4, 2, 3, 9];
-  let labels = ["10:34:23", "10:34:24", "10:34:25", "10:34:26", "10:34:27", "10:34:23", "10:34:24", "10:34:25", "10:34:26", "10:34:27"];
+  let data = [5, 2, null, null, null, null];
+  let labels = ["10:34:23", "10:34:24"];
+  let rgba0;
+  let rgba1;
+  let stroke;
+  switch(props.color){
+    case 0:
+      rgba0 = 'rgba(248,222,189,1)'
+      rgba1 = 'rgba(251,235,214,0)'
+      stroke = "#F3A53F"
+      break;
+    case 1:
+      rgba0 = 'rgba(218,129,132,1)'
+      rgba1 = 'rgba(202,107,110,0)'
+      stroke = "#CA6B6E"
+      break;
+    case 2:
+      rgba0 = 'rgba(208,251,255,1)'
+      rgba1 = 'rgba(221,242,244,0)'
+      stroke = "#478F96"
+      break;
+    default:
+  }
 
+  useEffect(() => {
+    return
+  }, [])
 
   useEffect(() => {
     const ctx = canvas.current.getContext("2d");
@@ -34,8 +59,8 @@ function RealChart(type, subtype, color) {
       return;
     }
     var gradient = ctx.createLinearGradient(0, 0, 0, 100);
-    gradient.addColorStop(0, 'rgba(248,222,189,1)');   
-    gradient.addColorStop(1, 'rgba(251,235,214,0)');
+    gradient.addColorStop(0, rgba0);   
+    gradient.addColorStop(1, rgba1);
     console.log(data, labels);
     const chart = new Chart(ctx, {
       type: "line",
@@ -46,7 +71,7 @@ function RealChart(type, subtype, color) {
             backgroundColor: gradient,
             fill: 'origin',
             borderWidth: 1.5,
-            borderColor: "#F3A53F",
+            borderColor: stroke,
             spanGaps: true,
             data: data,
             pointRadius: 0,
@@ -78,7 +103,7 @@ function RealChart(type, subtype, color) {
       },
     });
     return () => chart.destroy();
-  }, [data]);
+  }, [slicedData]);
 
   return (
     <div className="flex-grow">

@@ -10,7 +10,7 @@ function Minigraph(props) {
         <h4 className="font-bold text-base text-light-gray">{props.unit}</h4>
       </div>
       <div className="absolute bottom-0 inset-x-0 p-4">
-        <RealChart />
+        <RealChart color={props.color}/>
       </div>
     </div>
   );

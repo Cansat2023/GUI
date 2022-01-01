@@ -1,5 +1,6 @@
 import React from 'react'
-import Minigraph from './Minigraph'
+import Minigraph from './MiniA/Minigraph'
+import MinigraphB from './MiniB/MinigraphB'
 
 function Dash() {
     return (
@@ -8,9 +9,11 @@ function Dash() {
                 <h1 className="font-bold text-base mb-3">
                     Tethered Payload
                 </h1>
-                <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3 overflow-hidden">
-                    <Minigraph subtype = "Voltage" unit = "volts"/>
-                    <Minigraph subtype = "Altitude" unit = "meters"/>
+                <div className="grid grid-cols-1 grid-rows-3 gap-5 sm:grid-cols-2 xl:grid-cols-3 overflow-hidden">
+                    <Minigraph subtype = "Voltage" unit = "volts" color={1}/>
+                    <Minigraph subtype = "Altitude" unit = "meters" color={0}/>
+                    <Minigraph subtype = "Altitude" unit = "meters" color={2}/>
+                    <MinigraphB subtype = "Altitude" unit = "meters"/>
                 </div>
             </div>
             <div className="pt-2 md:pl-2 md:pt-0">
