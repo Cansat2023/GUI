@@ -7,7 +7,7 @@ function Header() {
                 <h1 className="font-mulish font-bold text-xl text-darkest-gray">Team Kalam</h1>
                 <p className="font-mulish font-semibold text-sm text-[#6A6969]">Connected, Delay: 500ms</p>
             </div>
-            <div className="bg-white flex space-x-4 w-fit h-fit p-3 rounded-xl border border-stroke drop-shadow-sm">
+            <div className="bg-white flex space-x-4 w-fit h-fit p-3 rounded-xl border border-stroke drop-shadow-sm mx-auto md:mx-0">
                 <div className="font-mulish flex flex-col justify-center space-y-0">
                     <h1 className="text-2xl text-darkest-gray leading-none">KLM</h1>
                     <p className="text-xs text-light-gray font-bold">TEAM ID</p>

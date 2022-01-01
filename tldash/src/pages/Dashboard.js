@@ -4,7 +4,7 @@ import Header from '../components/Header'
 
 function Dashboard() {
     return (
-        <div className="flex flex-col h-screen w-screen overflow-hidden bg-yellowish">
+        <div className="flex flex-col h-screen w-screen bg-yellowish">
             <Header/>
             <Dash/>
         </div>
