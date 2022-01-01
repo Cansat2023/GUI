@@ -1,7 +1,7 @@
 import React from "react";
-import SuparealChart from "./SuparealChart";
+import SuparealChartB from "./SuparealChartB";
 
-function Expagraph(props) {
+function ExpagraphB(props) {
   return (
     <div className="col-span-full bg-white flex font-mulish rounded-xl border border-stroke drop-shadow-sm p-4 flex-col">
       <div className="flex flex-col xl:flex-row xl:justify-between xl:items-center pb-1">
@@ -19,10 +19,10 @@ function Expagraph(props) {
         </div>
       </div>
       <div>
-          <SuparealChart color={2}/>
+          <SuparealChartB color={2}/>
       </div>
     </div>
   );
 }
 
-export default Expagraph;
+export default ExpagraphB;
