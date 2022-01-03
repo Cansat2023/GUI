@@ -21,11 +21,13 @@ Chart.register(
   CategoryScale
 );
 
-function RealChart(props) {
+function SuparealChart(props) {
   const canvas = useRef(null);
+
+  // generate random data
   const [counter, setCounter] = useState(0);
   const [increment, setIncrement] = useState(0);
-  const [range, setRange] = useState(10);
+  const [range, setRange] = useState(35);
 
   // Dummy data to be looped
   const data = [
@@ -77,27 +79,17 @@ function RealChart(props) {
     return () => setIncrement(0);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [counter]);
-  
 
-
-  let rgba0;
-  let rgba1;
   let stroke;
-  switch(props.color){
+  switch (props.color) {
     case 0:
-      rgba0 = 'rgba(248,222,189,1)'
-      rgba1 = 'rgba(251,235,214,0)'
-      stroke = "#F3A53F"
+      stroke = "#F3A53F";
       break;
     case 1:
-      rgba0 = 'rgba(218,129,132,1)'
-      rgba1 = 'rgba(202,107,110,0)'
-      stroke = "#CA6B6E"
+      stroke = "#CA6B6E";
       break;
     case 2:
-      rgba0 = 'rgba(208,251,255,1)'
-      rgba1 = 'rgba(221,242,244,0)'
-      stroke = "#478F96"
+      stroke = "#478F96";
       break;
     default:
   }
@@ -108,24 +100,20 @@ function RealChart(props) {
     if (!ctx) {
       return;
     }
-    var gradient = ctx.createLinearGradient(0, 0, 0, 100);
-    gradient.addColorStop(0, rgba0);   
-    gradient.addColorStop(1, rgba1);
     const chart = new Chart(ctx, {
       type: "line",
       data: {
         labels: slicedLabels,
         datasets: [
           {
-            backgroundColor: gradient,
-            fill: 'origin',
+            fill: "none",
             borderWidth: 1.5,
             borderColor: stroke,
             spanGaps: true,
             data: slicedData,
-            pointRadius: 0,
+            pointRadius: 3,
             pointHitRadius: 20,
-            cubicInterpolationMode: 'monotone',
+            cubicInterpolationMode: "monotone",
             tension: 0.4,
           },
         ],
@@ -134,15 +122,28 @@ function RealChart(props) {
         maintainAspectRatio: false,
         plugins: {
           legend: {
-            display: false,
+            display: true,
           },
         },
         scales: {
           x: {
-            display: false,
+            type: "time",
+            time: {
+              parser: "hh:mm:ss",
+              unit: "second",
+              tooltipFormat: "MMM DD, H:mm:ss a",
+              displayFormats: {
+                second: "H:mm:ss",
+              },
+            },
+            grid: {
+              drawBorder: false,
+            },
           },
           y: {
-            display: false,
+            grid: {
+              drawBorder: false,
+            },
           },
         },
         animation: false,
@@ -154,9 +155,9 @@ function RealChart(props) {
 
   return (
     <div className="flex-grow">
-      <canvas ref={canvas} height={100}></canvas>
+      <canvas ref={canvas} height={300}></canvas>
     </div>
   );
 }
 
-export default RealChart;
+export default SuparealChart;

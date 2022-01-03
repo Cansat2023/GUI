@@ -1,4 +1,6 @@
 import React from 'react'
+import Expagraph from './ExpandedGraph/Expagraph'
+import ExpagraphB from './ExpandedGraphB/ExpagraphB'
 import Minigraph from './MiniA/Minigraph'
 import MinigraphB from './MiniB/MinigraphB'
 
@@ -9,11 +11,9 @@ function Dash() {
                 <h1 className="font-bold text-base mb-3">
                     Tethered Payload
                 </h1>
-                <div className="grid grid-cols-1 grid-rows-3 gap-5 sm:grid-cols-2 xl:grid-cols-3 overflow-hidden">
+                <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3 overflow-hidden">
+                    <Expagraph/>
                     <Minigraph subtype = "Voltage" unit = "volts" color={1}/>
-                    <Minigraph subtype = "Altitude" unit = "meters" color={0}/>
-                    <Minigraph subtype = "Altitude" unit = "meters" color={2}/>
-                    <MinigraphB subtype = "Altitude" unit = "meters"/>
                 </div>
             </div>
             <div className="pt-2 md:pl-2 md:pt-0">
