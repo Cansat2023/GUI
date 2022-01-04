@@ -9,7 +9,7 @@ function Header() {
             </div>
             <div className="bg-white flex space-x-4 w-fit h-fit p-3 rounded-xl border border-stroke drop-shadow-sm mx-auto md:mx-0">
                 <div className="font-mulish flex flex-col justify-center space-y-0">
-                    <h1 className="text-2xl text-darkest-gray leading-none">KLM</h1>
+                    <h1 className="text-2xl text-darkest-gray leading-none">1077</h1>
                     <p className="text-xs text-light-gray font-bold">TEAM ID</p>
                 </div>
                 <div className="font-mulish flex flex-col justify-center space-y-0">
