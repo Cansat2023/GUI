@@ -45,13 +45,13 @@ function RealChartB(props) {
       return;
     }
     var gradientr = ctx.createLinearGradient(0, 0, 0, 100);
-    gradientr.addColorStop(0, rgba0[0]);   
+    gradientr.addColorStop(0, rgba1[0]);   
     gradientr.addColorStop(1, rgba1[0]);
     var gradientp = ctx.createLinearGradient(0, 0, 0, 100);
-    gradientp.addColorStop(0, rgba0[1]);   
+    gradientp.addColorStop(0, rgba1[1]);   
     gradientp.addColorStop(1, rgba1[1]);
     var gradienty = ctx.createLinearGradient(0, 0, 0, 100);
-    gradienty.addColorStop(0, rgba0[2]);   
+    gradienty.addColorStop(0, rgba1[2]);   
     gradienty.addColorStop(1, rgba1[2]);
 
     const chart = new Chart(ctx, {
