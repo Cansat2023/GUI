@@ -1,4 +1,5 @@
 # GUI
 Updated GUI for Team Kalam
 
-<img width="1600" alt="Dashboard (2)" src="https://user-images.githubusercontent.com/19469980/147661505-e2362b9f-7748-492f-a709-d3f864a3038b.png">
+![image](https://user-images.githubusercontent.com/19469980/148557989-e45b0516-c7a1-40d1-b828-7916b1ad56f7.png)
+![image](https://user-images.githubusercontent.com/19469980/148557972-3f7d50dc-abda-4526-bd8b-f397650fd0ee.png)
