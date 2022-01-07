@@ -20,6 +20,10 @@ function Header() {
                     <h1 className="text-2xl text-darkest-gray leading-none">467</h1>
                     <p className="text-xs text-light-gray font-bold">PACKET COUNT</p>
                 </div>
+                <div className="font-mulish flex flex-col justify-center space-y-0">
+                    <h1 className="text-2xl text-darkest-gray leading-none">C</h1>
+                    <p className="text-xs text-light-gray font-bold">PACKET TYPE</p>
+                </div>
             </div>
         </div>
     )
