@@ -16,25 +16,25 @@ function SoftwareStateC() {
                 <div className="bg-transparent rounded-xl px-2 border-4 font-black text-neutral-400 border-neutral-400 flex justify-center">9</div>
             </div>
             <div className="flex flex-wrap gap-x-2">
-                <div className="font-bold text-3xl text-neutral-300">
+                <div className="font-bold text-3xl text-neutral-300 hidden">
                     CONFIGURATION
                 </div>
-                <div className="font-bold text-3xl text-neutral-300">
+                <div className="font-bold text-3xl text-neutral-300 hidden">
                     ASCENT
                 </div>
-                <div className="font-bold text-3xl text-neutral-300">
+                <div className="font-bold text-3xl text-neutral-300 hidden">
                     RELEASE
                 </div>
-                <div className="font-bold text-3xl text-neutral-300">
+                <div className="font-bold text-3xl text-neutral-300 hidden">
                     FAST_DESCENT
                 </div>
-                <div className="font-bold text-3xl text-neutral-300">
+                <div className="font-bold text-3xl text-neutral-300 hidden">
                     LG_PARACHUTE_DEPLOY
                 </div>
-                <div className="font-bold text-3xl text-neutral-300">
+                <div className="font-bold text-3xl text-neutral-300 hidden">
                     SLOW_DESCENT
                 </div>
-                <div className="font-bold text-3xl text-neutral-300">
+                <div className="font-bold text-3xl text-neutral-300 hidden">
                     PAYLOAD_DEPLOY
                 </div>
                 <div className="font-extrabold text-3xl text-black">

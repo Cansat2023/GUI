@@ -11,7 +11,7 @@ function SoftwareStateTP() {
                 <div className="bg-transparent rounded-xl px-2 border-4 font-black text-neutral-400 border-neutral-400 flex justify-center">4</div>
             </div>
             <div className="flex flex-wrap gap-x-2">
-                <div className="font-bold text-3xl text-neutral-300">STANDBY</div>
+                <div className="font-bold text-3xl text-neutral-300 hidden">STANDBY</div>
                 <div className="font-extrabold text-3xl text-black">RELEASED</div>
                 <div className="font-bold text-3xl text-neutral-400">DATA_RELAY</div>
                 <div className="font-bold text-3xl text-neutral-400">RECOVERY</div>

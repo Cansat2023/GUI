@@ -3,26 +3,26 @@ USERNAME = "username";
 PASSWORD = "password";
 
 
-// const mqtt = require('mqtt');
-// const client = mqtt.connect('cansat.info', {
-//     username: USERNAME,
-//     password: PASSWORD,
-//     port: 1883
-// });
+const mqtt = require('mqtt');
+const client = mqtt.connect('cansat.info', {
+    username: USERNAME,
+    password: PASSWORD,
+    port: 1883
+});
 
 
-// client.on(
-//     'connect',
-//     () => {
-//         client.subscribe('presence', (err) => {
-//             if(!err){
-//                 setInterval(() => {
-//                     client.publish('teams/' + TEAM_ID, getData());
-//                 }, 1000);
-//             }
-//         });
-//     }
-// )
+client.on(
+    'connect',
+    () => {
+        client.subscribe('presence', (err) => {
+            if(!err){
+                setInterval(() => {
+                    client.publish('teams/' + TEAM_ID, getData());
+                }, 1000);
+            }
+        });
+    }
+)
 
 PACKET_TYPES = ['C', 'T']
 
