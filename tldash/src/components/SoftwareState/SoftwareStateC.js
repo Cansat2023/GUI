@@ -40,7 +40,7 @@ function SoftwareStateC() {
                 <div className="font-extrabold text-3xl text-black">
                     PAYLOAD_DATA_RELAY
                 </div>
-                <div className="font-bold text-3xl text-neutral-400">
+                <div className="font-bold text-3xl text-neutral-400 hidden">
                     RECOVERY
                 </div>
             </div>

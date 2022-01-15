@@ -21,7 +21,7 @@ function Actions() {
                         </svg>
                     </button>
                     <div className="flex flex-wrap font-mulish font-bold text-black">
-                        Telemetry Transmission (OFF)
+                        Telemetry <br />Transmission (OFF)
                     </div>
                 </div>
                 <div className="flex gap-2">
@@ -59,7 +59,7 @@ function Actions() {
                         </svg>
                     </button>
                     <div className="flex flex-wrap font-mulish font-bold text-black">
-                        Simulation Mode (ON)
+                        Simulation <br />Mode (ON)
                     </div>
                 </div>
             </div>
