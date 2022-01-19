@@ -8,7 +8,7 @@ function Dashboard() {
     return (
         <div className="flex flex-col h-screen w-full bg-yellowish">
             <Header />
-            <SerialBuffer/>
+            {/* <SerialBuffer/> */}
             <Dash />
             <Footer />
         </div>
