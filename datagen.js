@@ -91,7 +91,7 @@ function generatePayloadData() {
             pointing_error: Math.round(Math.random() * 100) / 100,
             // Software state
             software_state: 'RELEASED',
-            CMD_ECHO: 'CXON'
+            CMD_ECHO: 'PXON'
         });
     }
     return data;
