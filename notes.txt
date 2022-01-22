@@ -1,0 +1,22 @@
+CMD,1095,CX,ON - as defined in mission guide
+
+CMD,1095,ST,17:54:56
+
+CMD,1095,SIM,ACTIVATE
+
+CMD,1095,SIMP,977000 > pressure should correlate to container altitude
+
+CMD,1095,PX,ON - self defined
+
+1095,17:54:56,5,C,F,R,3,7.5,0.78,17:54:56,0.0078,0.0009,4.9,63,DESCENT,CXON - container received -4hz
+
+1095,17:54:56,28,T,8.8,0.8,0.38,0.65,0.06,0.9,0.61,0.56,0.38,0.7,0.2,0.89,0.91,RELEASED - payload received - 4hz
+
+
+
+<300 -> R, before N
+Temp between 24 and 26
+voltage between 8.3 and 9
+GPS lat and long should be home
+0-5> launch
+1st row CXON, then SIMP

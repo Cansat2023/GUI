@@ -79,6 +79,58 @@ function generateAltitudeData(startTime, maxAltitude, maxTime, descentRate1, des
     return data;
 }
 
+
+tp_deploy_time = 0;
+tp_deploy_secs = 0;
+
+// Data generators for altitude of payload
+function generateDescentData3(startTime, p2DeployAltitude, descentRate){
+    let data = [];
+    let time = startTime;
+    let altitude = p2DeployAltitude;
+    let timeStep = 1;
+    let timeSteps = 20;
+    for (let i = 0; i < timeSteps; i++) {
+        time += timeStep;
+        altitude = p2DeployAltitude - (descentRate * (i+1));
+        data.push({
+            "time": time,
+            "altitude": altitude
+        });
+    }
+    return [data, time];
+}
+function generateGravDescent(releaseAltitude, releaseTime){
+    let data = [];
+    let time = releaseTime;
+    let altitude = releaseAltitude;
+    let timeStep = 1;
+    i=0;
+    while(altitude > 0) {
+        i+=1;
+        time += timeStep;
+        g = 9.81;
+        t = (timeStep * (i+1));
+        altitude = releaseAltitude - (g * t * t / 2);
+        data.push({
+            "time": time,
+            "altitude": altitude
+        });
+    }
+    data[data.length-1].altitude = 0;
+    return data;
+}
+function generatePayloadAltitudeData(releaseAltitude, releaseTime, initDescentRate){
+    let data = [];
+    // Payload descent rate is the sum of the two descent rates - 5 and 0.5
+    let initDescent = generateDescentData3(releaseTime, releaseAltitude, initDescentRate);
+    data.push(...initDescent[0]);
+    gravAltitude = initDescent[0][initDescent[0].length-1].altitude;
+    let gravDescent = generateGravDescent(gravAltitude, initDescent[1]);
+    data.push(...gravDescent);
+    return data;
+}
+let startDate = new Date().getTime();
 // Data generator for Container
 function generateContainerData() {
     let data = [];
@@ -112,7 +164,7 @@ function generateContainerData() {
         software_state: 'SOFTWARE_STATE',
         CMD_ECHO: 'CMD_ECHO'
     });
-    let startDate = new Date().getTime();
+    let tp_rel = 'N';
     let software_state = 0;
     let software_states = ['', 'ASCENT', 'RELEASED', 'DESCENT1', 'LP_DEPLOY', 'DESCENT2', 'TP_RELEASE', 'TP_RELAY', 'RECOVERY'];
     for (let i = 0; i < altitudeData.length; i++) {
@@ -128,6 +180,9 @@ function generateContainerData() {
             software_state = 5;
         } else if(altitudeData[i].altitude <= TP_RELEASE_ALTITUDE && software_state == 5){
             software_state = 6;
+            tp_deploy_time = new Date(startDate + altitudeData[i].time * 1000).getTime();
+            tp_deploy_secs = altitudeData[i].time;
+            tp_rel = 'R';
         } else if(software_state == 6){
             software_state = 7;
         } else if(altitudeData[i].altitude <= 5 && software_state == 7){
@@ -146,7 +201,7 @@ function generateContainerData() {
             packet_count: packet_count + i,
             packet_type: PACKET_TYPES[0],
             mode: 'S',
-            tp_released: 'R',
+            tp_released: tp_rel,
             // altitude with 0.1 resolution
             altitude: Number.parseFloat(altitudeData[i].altitude).toFixed(1),
             // temp in 0.1 C resolution
@@ -169,15 +224,17 @@ function generateContainerData() {
             gps_sats: 9,
             // Software state
             software_state: software_states[software_state],
-            CMD_ECHO: 'CXON'
+            CMD_ECHO: 'SIMP'
         });
     }
+    data[1].CMD_ECHO = 'CXON';
     return data;
 }
 
 // Data generator for Payload
 function generatePayloadData() {
     let data = [];
+    let altitudeData = generatePayloadAltitudeData(TP_RELEASE_ALTITUDE, tp_deploy_secs, DESCENT_RATE2+0.5);
     packet_count = 1;
     data.push({
         team_id: "TEAM_ID",
@@ -210,12 +267,21 @@ function generatePayloadData() {
         software_state: 'SOFTWARE_STATE',
         // CMD_ECHO: 'CMD_ECHO'
     });
-    for (let i = 0; i < 100; i++) {
+    let software_state = 0;
+    let software_states = ['', 'RELEASED', 'TP_RELAY', 'RECOVERY'];
+    for (let i = 0; i < altitudeData.length; i++) {
+        if(altitudeData[i].altitude < 300 && software_state == 0){
+            software_state = 1;
+        } else if(software_state == 1){
+            software_state = 2;
+        } else if(altitudeData[i].altitude <= 5 && software_state == 2){
+            software_state = 3;
+        }
         data.push({
             team_id: TEAM_ID,
             // time in HH:MM:SS
             // add i seconds to time for simulation
-            timestamp: new Date(new Date().getTime() + i * 1000).toLocaleTimeString(options = {
+            timestamp: new Date(tp_deploy_time + (i * 1000)).toLocaleTimeString(options = {
                 hour12: false,
                 hour: "2-digit",
                 minute: "2-digit",
@@ -224,27 +290,27 @@ function generatePayloadData() {
             packet_count: packet_count + i,
             packet_type: PACKET_TYPES[1],
             // altitude with 0.1 resolution
-            altitude: Math.round(Math.random() * 100) / 10,
+            altitude: Number.parseFloat(altitudeData[i].altitude).toFixed(1),
             // temp in 0.1 C resolution
             temperature: chance.floating({min: 24, max: 26, fixed: 1}),
             // voltage in 0.01 V resolution
             voltage: chance.floating({min: 8.5, max: 9, fixed: 2}), //8.4 to 9
             // gyro roll pitch and yaw in degrees per second
-            gyro_roll: Math.round(Math.random() * 100) / 100,
-            gyro_pitch: Math.round(Math.random() * 100) / 100,
-            gyro_yaw: Math.round(Math.random() * 100) / 100,
+            gyro_roll: chance.floating({min: -1, max: 1, fixed: 2}),
+            gyro_pitch: chance.floating({min: -1, max: 1, fixed: 2}),
+            gyro_yaw: chance.floating({min: -1, max: 1, fixed: 2}),
             // accel roll pitch and yaw in g
-            accel_roll: Math.round(Math.random() * 100) / 100,
-            accel_pitch: Math.round(Math.random() * 100) / 100,
-            accel_yaw: Math.round(Math.random() * 100) / 100,
+            accel_roll: chance.floating({min: -1, max: 1, fixed: 2}),
+            accel_pitch: chance.floating({min: -1, max: 1, fixed: 2}),
+            accel_yaw: chance.floating({min: -1, max: 1, fixed: 2}),
             // mag roll pitch and yaw in gauss
-            mag_roll: Math.round(Math.random() * 100) / 100,
-            mag_pitch: Math.round(Math.random() * 100) / 100,
-            mag_yaw: Math.round(Math.random() * 100) / 100,
+            mag_roll: chance.floating({min: -1, max: 1, fixed: 2}),
+            mag_pitch: chance.floating({min: -1, max: 1, fixed: 2}),
+            mag_yaw: chance.floating({min: -1, max: 1, fixed: 2}),
             // pointing error in degrees
-            pointing_error: Math.round(Math.random() * 100) / 100,
+            pointing_error: chance.floating({min: 0, max: 1, fixed: 2}),
             // Software state
-            software_state: 'RELEASED',
+            software_state: software_states[software_state],
             // CMD_ECHO: 'PXON'
         });
     }
