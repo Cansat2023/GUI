@@ -230,7 +230,7 @@ function generateContainerData() {
             // gps sats in integer
             gps_sats: 9,
             // Software state
-            software_state: software_states[software_state],
+            software_state: software_state,
             CMD_ECHO: 'SIMP' + calculatePressure(altitudeData[i].altitude).toString(), 
         });
     }
@@ -317,7 +317,7 @@ function generatePayloadData() {
             // pointing error in degrees
             pointing_error: chance.floating({min: 0, max: 1, fixed: 2}),
             // Software state
-            software_state: software_states[software_state],
+            software_state: software_state,
             // CMD_ECHO: 'PXON'
         });
     }
