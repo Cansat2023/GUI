@@ -130,6 +130,13 @@ function generatePayloadAltitudeData(releaseAltitude, releaseTime, initDescentRa
     data.push(...gravDescent);
     return data;
 }
+
+function calculatePressure(altitude){
+    let sealevel = 101325;
+    let pressure = sealevel/Math.pow(1-(altitude/44330), 5.255);
+    return Number.parseFloat(pressure).toFixed(2);
+}
+
 let startDate = new Date().getTime();
 // Data generator for Container
 function generateContainerData() {
@@ -224,7 +231,7 @@ function generateContainerData() {
             gps_sats: 9,
             // Software state
             software_state: software_states[software_state],
-            CMD_ECHO: 'SIMP'
+            CMD_ECHO: 'SIMP' + calculatePressure(altitudeData[i].altitude).toString(), 
         });
     }
     data[1].CMD_ECHO = 'CXON';
