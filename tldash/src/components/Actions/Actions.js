@@ -6,7 +6,7 @@ function Actions() {
             <h1 className="font-bold text-base mb-3 ml-2">Actions</h1>
             <div className="flex flex-col gap-3">
                 <div className="flex gap-2">
-                    <button className="rounded-full bg-green-300 h-fit w-fit inline-flex justify-center items-center">
+                <button className="rounded-full bg-red-300 h-fit w-fit inline-flex justify-center items-center">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             className="h-12 w-12"
@@ -15,14 +15,32 @@ function Actions() {
                         >
                             <path
                                 fillRule="evenodd"
-                                d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
+                                d="M10 18a8 8 0 100-16 8 8 0 000 16zM8 7a1 1 0 00-1 1v4a1 1 0 001 1h4a1 1 0 001-1V8a1 1 0 00-1-1H8z"
                                 clipRule="evenodd"
                             />
                         </svg>
                     </button>
                     <div className="flex flex-wrap font-mulish font-bold text-black">
-                        Telemetry <br />
-                        Transmission (OFF)
+                        Container Transmission <br />(CXON)
+                    </div>
+                </div>
+                <div className="flex gap-2">
+                <button className="rounded-full bg-red-300 h-fit w-fit inline-flex justify-center items-center">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="h-12 w-12"
+                            viewBox="0 0 20 20"
+                            fill="currentColor"
+                        >
+                            <path
+                                fillRule="evenodd"
+                                d="M10 18a8 8 0 100-16 8 8 0 000 16zM8 7a1 1 0 00-1 1v4a1 1 0 001 1h4a1 1 0 001-1V8a1 1 0 00-1-1H8z"
+                                clipRule="evenodd"
+                            />
+                        </svg>
+                    </button>
+                    <div className="flex flex-wrap font-mulish font-bold text-black">
+                        Payload Transmission <br />(GPON)
                     </div>
                 </div>
                 <div className="flex gap-2">
@@ -45,7 +63,7 @@ function Actions() {
                     </div>
                 </div>
                 <div className="flex gap-2">
-                    <button className="rounded-full bg-red-300 h-fit w-fit inline-flex justify-center items-center">
+                <button className="rounded-full bg-green-300 h-fit w-fit inline-flex justify-center items-center">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             className="h-12 w-12"
@@ -54,14 +72,34 @@ function Actions() {
                         >
                             <path
                                 fillRule="evenodd"
-                                d="M10 18a8 8 0 100-16 8 8 0 000 16zM8 7a1 1 0 00-1 1v4a1 1 0 001 1h4a1 1 0 001-1V8a1 1 0 00-1-1H8z"
+                                d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
                                 clipRule="evenodd"
                             />
                         </svg>
                     </button>
                     <div className="flex flex-wrap font-mulish font-bold text-black">
-                        Simulation <br />
-                        Mode (ON)
+                        Enable Simulation <br />
+                        Mode (Disabled)
+                    </div>
+                </div>
+                <div className="flex gap-2">
+                <button className="rounded-full bg-green-300 h-fit w-fit inline-flex justify-center items-center cursor-not-allowed opacity-40">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="h-12 w-12"
+                            viewBox="0 0 20 20"
+                            fill="currentColor"
+                        >
+                            <path
+                                fillRule="evenodd"
+                                d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
+                                clipRule="evenodd"
+                            />
+                        </svg>
+                    </button>
+                    <div className="flex flex-wrap font-mulish font-bold text-black">
+                        Activate Simulation <br />
+                        Mode (Inactive)
                     </div>
                 </div>
                 <div className="flex gap-2 items-center">
@@ -83,6 +121,27 @@ function Actions() {
                     </button>
                     <div className="flex flex-wrap font-mulish font-bold text-black">
                         Calibrate
+                    </div>
+                </div>
+                <div className="flex gap-2 items-center">
+                    <button className="rounded-full bg-red-300 h-12 w-12 inline-flex justify-center items-center">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="h-8 w-8"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                        >
+                            <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                            />
+                        </svg>
+                    </button>
+                    <div className="flex flex-wrap font-mulish font-bold text-black">
+                        Set Time
                     </div>
                 </div>
             </div>

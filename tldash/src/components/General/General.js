@@ -15,7 +15,7 @@ function General() {
         </div>
         <div className="">
           <h2 className="text-base font-semibold leading-tight">CMD Echo</h2>
-          <div className="font-base text-3xl">CXON</div>
+          <div className="font-base text-3xl">GPON</div>
         </div>
       </div>
     </div>
