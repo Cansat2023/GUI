@@ -25,25 +25,6 @@ function Actions() {
                     </div>
                 </div>
                 <div className="flex gap-2">
-                <button className="rounded-full bg-red-300 h-fit w-fit inline-flex justify-center items-center">
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="h-12 w-12"
-                            viewBox="0 0 20 20"
-                            fill="currentColor"
-                        >
-                            <path
-                                fillRule="evenodd"
-                                d="M10 18a8 8 0 100-16 8 8 0 000 16zM8 7a1 1 0 00-1 1v4a1 1 0 001 1h4a1 1 0 001-1V8a1 1 0 00-1-1H8z"
-                                clipRule="evenodd"
-                            />
-                        </svg>
-                    </button>
-                    <div className="flex flex-wrap font-mulish font-bold text-black">
-                        Turn off Payload Telemetry (ON)
-                    </div>
-                </div>
-                <div className="flex gap-2">
                     <button className="rounded-full bg-green-300 h-fit w-fit inline-flex justify-center items-center">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
