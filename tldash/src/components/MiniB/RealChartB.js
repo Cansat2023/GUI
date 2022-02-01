@@ -10,6 +10,7 @@ import {
   Tooltip,
   CategoryScale,
 } from "chart.js";
+import 'chartjs-adapter-moment';
 Chart.register(
   LineController,
   LineElement,
@@ -25,10 +26,27 @@ function RealChartB(props) {
   const canvas = useRef(null);
   const [slicedData, setSlicedData] = useState(new Array(5).fill(null));
 
-  let datar = [5, 2, null, null, null, null];
-  let datap = [10, 4, null, null, null, null];
-  let datay = [11, 3, null, null, null, null];
-  let labels = ["10:34:23", "10:34:24"];
+  // generate fake data
+  const generateData = () => {
+    const data = new Array(5).fill(null);
+    data.forEach((v, i) => {
+      data[i] = Math.random() * 100;
+    });
+    return data;
+  };
+  let datar = generateData();
+  let datap = generateData();
+  let datay = generateData();
+  // generate fake data
+  const generateDates = () => {
+    const now = new Date();
+    const dates = [];
+    datar.forEach((v, i) => {
+      dates.push(new Date(now - 2000 - i * 2000));
+    });
+    return dates;
+  };
+  let labels = generateDates().slice(0, 5).reverse();
    
 
   let rgba0 = ['rgba(248,222,189,1)', 'rgba(218,129,132,1)', 'rgba(208,251,255,1)'];
@@ -106,7 +124,19 @@ function RealChartB(props) {
         },
         scales: {
           x: {
-            display: false,
+            type: 'time',
+            time: {
+              parser: 'hh:mm:ss',
+              unit: 'second',
+              tooltipFormat: 'MMM DD, H:mm:ss a',
+              displayFormats: {
+                second: 'mm:ss',
+              },
+            },
+            ticks: {
+              autoSkipPadding: 0,
+              maxRotation: 40,
+            },
           },
           y: {
             display: false,
@@ -123,7 +153,7 @@ function RealChartB(props) {
 
   return (
     <div className="flex-grow">
-      <canvas ref={canvas} height={100}></canvas>
+      <canvas ref={canvas} height={130}></canvas>
     </div>
   );
 }

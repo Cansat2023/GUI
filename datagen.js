@@ -88,11 +88,11 @@ function generateDescentData3(startTime, p2DeployAltitude, descentRate){
     let data = [];
     let time = startTime;
     let altitude = p2DeployAltitude;
-    let timeStep = 1;
-    let timeSteps = 20;
+    let timeStep = 0.25;
+    let timeSteps = 20/timeStep;
     for (let i = 0; i < timeSteps; i++) {
         time += timeStep;
-        altitude = p2DeployAltitude - (descentRate * (i+1));
+        altitude = p2DeployAltitude - (descentRate * (i+1) * timeStep);
         data.push({
             "time": time,
             "altitude": altitude
@@ -104,7 +104,7 @@ function generateGravDescent(releaseAltitude, releaseTime){
     let data = [];
     let time = releaseTime;
     let altitude = releaseAltitude;
-    let timeStep = 1;
+    let timeStep = 0.25;
     i=0;
     while(altitude > 0) {
         i+=1;
@@ -282,7 +282,7 @@ function generatePayloadData() {
             team_id: TEAM_ID,
             // time in HH:MM:SS
             // add i seconds to time for simulation
-            timestamp: new Date(tp_deploy_time + (i * 1000)).toLocaleTimeString(options = {
+            timestamp: new Date(tp_deploy_time + (i * 250)).toLocaleTimeString(options = {
                 hour12: false,
                 hour: "2-digit",
                 minute: "2-digit",

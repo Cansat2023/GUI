@@ -59,7 +59,7 @@ function SuparealChart(props) {
   useEffect(() => {
     const interval = setInterval(() => {
       setCounter(counter + 1);
-    }, 2000);
+    }, 250);
     return () => clearInterval(interval);
   }, [counter]);
 

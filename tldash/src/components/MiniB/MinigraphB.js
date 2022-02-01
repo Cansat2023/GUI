@@ -3,7 +3,7 @@ import RealChartB from "./RealChartB";
 
 function MinigraphB(props) {
     return (
-        <div className="bg-white flex font-mulish rounded-xl border border-stroke drop-shadow-sm p-4 flex-col relative h-44">
+        <div className="bg-white flex font-mulish rounded-xl border border-stroke drop-shadow-sm p-4 flex-col relative h-48">
             <div className="flex-row flex items-end z-10 relative justify-between">
                 <h4 className="font-semibold text-base z-10 relative">
                     {props.subtype}
