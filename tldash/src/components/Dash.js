@@ -19,7 +19,7 @@ function Dash() {
                 </h1>
                 <div className="grid grid-cols-1 gap-5 xl:grid-cols-3 overflow-hidden">
                     {/* <Expagraph /> */}
-                    <TDGraph/>
+                    {/* <TDGraph/> */}
                     <Minigraph subtype="Altitude" unit="meters" color={0} />
                     <Minigraph subtype="Voltage" unit="volts" color={1} />
                     <Minigraph subtype="Temperature" unit="Celsius" color={2} />

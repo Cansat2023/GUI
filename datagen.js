@@ -6,11 +6,11 @@ var chance = new Chance();
 TEAM_ID = "1095";
 PACKET_TYPES = ['C', 'T']
 START_TIME = 0;
-MAX_ALTITUDE = 725; //make sure this is >= 725
-MAX_TIME = 725;
+MAX_ALTITUDE = 670; //make sure this is >= 670
+MAX_TIME = 670; // ASSUMING 1M/S FOR NOW
 DESCENT_RATE1 = 15;
 DESCENT_RATE2 = 5;
-P2_DEPLOY_ALTITUDE = 400;
+P2_DEPLOY_ALTITUDE = 400; // Large parachute deployment
 TP_RELEASE_ALTITUDE = 300;
 
 // Data generators for altitude
@@ -173,27 +173,21 @@ function generateContainerData() {
     });
     let tp_rel = 'N';
     let software_state = 0;
-    let software_states = ['', 'ASCENT', 'RELEASED', 'DESCENT1', 'LP_DEPLOY', 'DESCENT2', 'TP_RELEASE', 'TP_RELAY', 'RECOVERY'];
+    let software_states = ['CALIBRATION', 'ASCENT', 'RELEASED', 'P2_DEPLOY', 'TP_RELEASE', 'RECOVERY'];
     for (let i = 0; i < altitudeData.length; i++) {
         if(altitudeData[i].altitude > 5 && software_state == 0){
             software_state = 1;
-        } else if(altitudeData[i].altitude >= 725 && software_state == 1){
+        } else if(altitudeData[i].altitude >= MAX_ALTITUDE && software_state == 1){
             software_state = 2;
-        } else if(software_state == 2){
+        } else if(altitudeData[i].altitude <= P2_DEPLOY_ALTITUDE && software_state == 2){
             software_state = 3;
-        } else if(altitudeData[i].altitude <= P2_DEPLOY_ALTITUDE && software_state == 3){
+        } else if(altitudeData[i].altitude <= TP_RELEASE_ALTITUDE && software_state == 3){
             software_state = 4;
-        } else if(software_state == 4){
-            software_state = 5;
-        } else if(altitudeData[i].altitude <= TP_RELEASE_ALTITUDE && software_state == 5){
-            software_state = 6;
             tp_deploy_time = new Date(startDate + altitudeData[i].time * 1000).getTime();
             tp_deploy_secs = altitudeData[i].time;
             tp_rel = 'R';
-        } else if(software_state == 6){
-            software_state = 7;
-        } else if(altitudeData[i].altitude <= 5 && software_state == 7){
-            software_state = 8;
+        } else if(altitudeData[i].altitude < 5 && software_state == 4){
+            software_state = 5;
         }
         data.push({
             team_id: TEAM_ID,
@@ -275,7 +269,7 @@ function generatePayloadData() {
         // CMD_ECHO: 'CMD_ECHO'
     });
     let software_state = 0;
-    let software_states = ['', 'RELEASED', 'TP_RELAY', 'RECOVERY'];
+    let software_states = ['STANDBY', 'RELEASED', 'TP_RELAY', 'RECOVERY'];
     for (let i = 0; i < altitudeData.length; i++) {
         if(altitudeData[i].altitude < 300 && software_state == 0){
             software_state = 1;
