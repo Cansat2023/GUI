@@ -10,6 +10,7 @@ import {
   Tooltip,
   CategoryScale,
 } from "chart.js";
+import 'chartjs-adapter-moment';
 Chart.register(
   LineController,
   LineElement,
@@ -139,22 +140,34 @@ function RealChart(props) {
         },
         scales: {
           x: {
-            display: false,
+            type: 'time',
+            time: {
+              parser: 'hh:mm:ss',
+              unit: 'second',
+              tooltipFormat: 'MMM DD, H:mm:ss a',
+              displayFormats: {
+                second: 'mm:ss',
+              },
+            },
+            ticks: {
+              autoSkipPadding: 0,
+              maxRotation: 40,
+            },
           },
           y: {
             display: false,
           },
         },
         animation: false,
-        resizeDelay: 200,
+
       },
     });
     return () => chart.destroy();
   }, [slicedData]);
 
   return (
-    <div className="flex-grow">
-      <canvas ref={canvas} height={100}></canvas>
+    <div className="">
+      <canvas ref={canvas} height={130}></canvas>
     </div>
   );
 }
