@@ -7,7 +7,7 @@ function General() {
       <div className="flex flex-wrap gap-x-5 gap-y-2">
         <div className="">
           <h2 className="text-base font-semibold leading-tight">Mode</h2>
-          <div className="font-base text-3xl">F</div>
+          <div className="font-base text-3xl">S</div>
         </div>
         <div className="">
           <h2 className="text-base font-semibold leading-tight">TP_Released</h2>
@@ -15,7 +15,7 @@ function General() {
         </div>
         <div className="">
           <h2 className="text-base font-semibold leading-tight">CMD Echo</h2>
-          <div className="font-base text-3xl">GPON</div>
+          <div className="font-base text-2xl">SIMP104693.18</div>
         </div>
       </div>
     </div>
